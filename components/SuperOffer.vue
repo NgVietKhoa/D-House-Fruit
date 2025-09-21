@@ -33,9 +33,9 @@
             </div>
             <div>
               <div class="text-3xl font-bold mb-4">€180.00</div>
-              <button class="border-2 border-white text-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-primary-green transition-colors">
+              <NuxtLink to="/fruits" class="border-2 border-white text-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-primary-green transition-colors inline-block">
                 SHOP NOW →
-              </button>
+              </NuxtLink>
             </div>
           </div>
         </div>
@@ -58,9 +58,9 @@
             <!-- Content - Always visible, centered -->
             <div class="relative z-10 p-6 h-full flex flex-col justify-center text-center text-white">
               <h3 class="text-2xl font-bold mb-4">Up to 70% Off</h3>
-              <button class="border-2 border-white text-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-green-600 transition-colors mx-auto">
+              <NuxtLink to="/fruits" class="border-2 border-white text-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-green-600 transition-colors mx-auto inline-block">
                 SHOP NOW →
-              </button>
+              </NuxtLink>
             </div>
           </div>
 
@@ -80,9 +80,9 @@
             <!-- Content - Always visible, centered -->
             <div class="relative z-10 p-6 h-full flex flex-col justify-center text-center text-white">
               <h3 class="text-2xl font-bold mb-3">Sale 50% Off</h3>
-              <button class="border-2 border-white text-white px-4 py-2 rounded-full font-semibold hover:bg-white hover:text-primary-green transition-colors mx-auto text-sm">
+              <NuxtLink to="/fruits" class="border-2 border-white text-white px-4 py-2 rounded-full font-semibold hover:bg-white hover:text-primary-green transition-colors mx-auto text-sm inline-block">
                 SHOP NOW →
-              </button>
+              </NuxtLink>
             </div>
           </div>
         </div>

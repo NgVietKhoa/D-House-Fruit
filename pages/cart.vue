@@ -40,7 +40,7 @@
             <span>Mua hoa quả</span>
           </NuxtLink>
           <NuxtLink 
-            to="/gift-baskets" 
+            to="/giftBaskets" 
             class="inline-flex items-center px-6 py-3 bg-primary-orange text-white rounded-lg hover:bg-orange-600 transition-colors"
           >
             <span>Mua giỏ quà</span>
@@ -67,21 +67,41 @@
               >
                 <div class="flex items-center space-x-4">
                   <!-- Product Image -->
-                  <div class="flex-shrink-0 w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
+                  <div class="flex-shrink-0 w-20 h-20 bg-gray-100 rounded-lg overflow-hidden relative">
                     <img 
-                      v-if="item.data.image"
+                      v-if="item.data && item.data.image"
                       :src="item.data.image" 
                       :alt="item.data.name"
                       class="w-full h-full object-cover"
                       @error="handleImageError"
                     />
-                    <div v-else class="w-full h-full flex items-center justify-center">
+                    <div 
+                      v-if="!item.data || !item.data.image" 
+                      class="w-full h-full flex items-center justify-center"
+                    >
                       <div 
                         class="w-12 h-12 rounded-full flex items-center justify-center"
-                        :class="item.data.colorClass || 'bg-primary-green'"
+                        :class="(item.data && item.data.colorClass) || 'bg-primary-green'"
                       >
                         <GiftIcon v-if="item.type === 'giftBasket'" class="w-6 h-6 text-white" />
-                        <span v-else class="text-white font-bold text-sm">{{ item.data.name.charAt(0) }}</span>
+                        <span v-else class="text-white font-bold text-sm">
+                          {{ (item.data && item.data.name) ? item.data.name.charAt(0) : '?' }}
+                        </span>
+                      </div>
+                    </div>
+                    <!-- Fallback for broken images -->
+                    <div 
+                      class="absolute inset-0 w-full h-full items-center justify-center hidden"
+                      style="background-color: #f3f4f6;"
+                    >
+                      <div 
+                        class="w-12 h-12 rounded-full flex items-center justify-center"
+                        :class="(item.data && item.data.colorClass) || 'bg-primary-green'"
+                      >
+                        <GiftIcon v-if="item.type === 'giftBasket'" class="w-6 h-6 text-white" />
+                        <span v-else class="text-white font-bold text-sm">
+                          {{ (item.data && item.data.name) ? item.data.name.charAt(0) : '?' }}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -275,11 +295,20 @@ const {
 
 // Methods
 const handleImageError = (event) => {
+  // Hide the broken image and show fallback
   event.target.style.display = 'none'
+  // Find the parent container and show the fallback div
+  const container = event.target.closest('.w-20.h-20')
+  if (container) {
+    const fallback = container.querySelector('div:last-child')
+    if (fallback) {
+      fallback.style.display = 'flex'
+    }
+  }
 }
 
 const proceedToCheckout = () => {
-  // TODO: Implement checkout logic
-  alert('Chức năng thanh toán sẽ được phát triển trong phiên bản tiếp theo!')
+  // Test với trang đơn giản trước
+  navigateTo('/checkout')
 }
 </script>

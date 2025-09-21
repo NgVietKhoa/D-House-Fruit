@@ -29,6 +29,7 @@ interface _GlobalComponents {
     'Header': typeof import("../../components/Header.vue")['default']
     'HeroBanner': typeof import("../../components/HeroBanner.vue")['default']
     'ProductCard': typeof import("../../components/ProductCard.vue")['default']
+    'ProfileSidebar': typeof import("../../components/ProfileSidebar.vue")['default']
     'SuperOffer': typeof import("../../components/SuperOffer.vue")['default']
     'SupportButtons': typeof import("../../components/SupportButtons.vue")['default']
     'Toast': typeof import("../../components/Toast.vue")['default']
@@ -72,6 +73,7 @@ interface _GlobalComponents {
     'LazyHeader': LazyComponent<typeof import("../../components/Header.vue")['default']>
     'LazyHeroBanner': LazyComponent<typeof import("../../components/HeroBanner.vue")['default']>
     'LazyProductCard': LazyComponent<typeof import("../../components/ProductCard.vue")['default']>
+    'LazyProfileSidebar': LazyComponent<typeof import("../../components/ProfileSidebar.vue")['default']>
     'LazySuperOffer': LazyComponent<typeof import("../../components/SuperOffer.vue")['default']>
     'LazySupportButtons': LazyComponent<typeof import("../../components/SupportButtons.vue")['default']>
     'LazyToast': LazyComponent<typeof import("../../components/Toast.vue")['default']>

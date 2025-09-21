@@ -2,18 +2,18 @@
   <Teleport to="body">
     <div
       v-if="displayedToasts.length > 0"
-      class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end z-[9999]"
-      style="top: 80px;"
+      class="fixed inset-0 flex items-start justify-center px-4 py-4 pointer-events-none sm:p-6 sm:items-start sm:justify-end z-[9999]"
+      style="top: 100px;"
       :class="containerClasses"
     >
-      <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
+      <div class="w-full max-w-sm mx-auto flex flex-col items-center space-y-3 sm:max-w-none sm:items-end sm:space-y-4">
         <TransitionGroup
           enter-active-class="transform ease-out duration-500 transition-all"
-          enter-from-class="translate-y-4 opacity-0 scale-95 sm:translate-y-0 sm:translate-x-4 sm:scale-90"
+          enter-from-class="-translate-y-4 opacity-0 scale-95 sm:translate-y-0 sm:translate-x-4 sm:scale-90"
           enter-to-class="translate-y-0 opacity-100 scale-100 sm:translate-x-0 sm:scale-100"
           leave-active-class="transition-all ease-in duration-200"
           leave-from-class="opacity-100 scale-100"
-          leave-to-class="opacity-0 scale-95 translate-y-2"
+          leave-to-class="opacity-0 scale-95 -translate-y-2"
           move-class="transition-all duration-300 ease-out"
         >
           <Toast

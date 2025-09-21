@@ -78,14 +78,25 @@
 
             <!-- Action Buttons -->
             <div class="flex items-center justify-between">
-              <button class="flex-1 bg-primary-green text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors mr-2">
+              <button 
+                @click="handleAddToCart(product)"
+                class="flex-1 bg-primary-green text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors mr-2"
+              >
                 <ShoppingCartIcon class="w-4 h-4 inline mr-1" />
                 Thêm vào giỏ
               </button>
-              <button class="p-2 text-gray-400 hover:text-red-500 transition-colors">
+              <button 
+                @click="handleAddToFavorites(product)"
+                class="p-2 text-gray-400 hover:text-red-500 transition-colors"
+                title="Thêm vào yêu thích"
+              >
                 <HeartIcon class="w-5 h-5" />
               </button>
-              <button class="p-2 text-gray-400 hover:text-blue-500 transition-colors">
+              <button 
+                @click="handleCompare(product)"
+                class="p-2 text-gray-400 hover:text-blue-500 transition-colors"
+                title="So sánh sản phẩm"
+              >
                 <ArrowsRightLeftIcon class="w-5 h-5" />
               </button>
             </div>
@@ -106,8 +117,10 @@
 <script setup>
 import { ShoppingCartIcon, HeartIcon, ArrowsRightLeftIcon } from '@heroicons/vue/24/outline'
 
-// Use products composable
+// Use composables
 const { allProducts, formatPrice } = useProducts()
+const { addToCart } = useCart()
+const { success } = useToast()
 
 // Filter tabs - focused on fruits only
 const filterTabs = [
@@ -204,6 +217,26 @@ const filteredProducts = computed(() => {
   }
   return bestSellerProducts.value.filter(product => product.category === activeFilter.value).slice(0, 8)
 })
+
+// Action handlers
+const handleAddToCart = (product) => {
+  addToCart({
+    id: product.id,
+    type: 'product',
+    quantity: 1
+  })
+  success(`Đã thêm "${product.name}" vào giỏ hàng`)
+}
+
+const handleAddToFavorites = (product) => {
+  // TODO: Implement favorites functionality
+  success(`Đã thêm "${product.name}" vào danh sách yêu thích`)
+}
+
+const handleCompare = (product) => {
+  // TODO: Implement compare functionality
+  success(`Đã thêm "${product.name}" vào danh sách so sánh`)
+}
 
 // Handle image error
 const handleImageError = (event) => {

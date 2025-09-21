@@ -40,7 +40,7 @@
             </div>
           </div>
 
-          <NuxtLink to="/gift-baskets" class="btn-secondary">
+          <NuxtLink to="/giftBaskets" class="btn-secondary">
             Đặt giỏ quà ngay
           </NuxtLink>
         </div>
@@ -62,7 +62,7 @@
               <p class="text-gray-600 text-sm mb-3">{{ featuredBaskets[0].description }}</p>
               <div class="flex items-center justify-between">
                 <span class="text-xl font-bold text-primary-green">{{ formatPrice(featuredBaskets[0].price) }}đ</span>
-                <NuxtLink to="/gift-baskets" class="btn-primary text-sm py-2 px-4">Đặt ngay</NuxtLink>
+                <NuxtLink to="/giftBaskets" class="btn-primary text-sm py-2 px-4">Đặt ngay</NuxtLink>
               </div>
             </div>
 

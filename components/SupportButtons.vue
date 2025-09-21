@@ -1,26 +1,26 @@
 <template>
-  <div class="fixed bottom-4 right-4 z-50">
+  <div class="fixed bottom-2 right-2 sm:bottom-4 sm:right-4 z-50">
     <!-- Support Buttons Container -->
-    <div class="flex flex-col items-end space-y-3">
+    <div class="flex flex-col items-end space-y-2 sm:space-y-3">
       <!-- Hotline Button -->
       <div class="relative group">
         <a
           href="tel:+84963152236"
-          class="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center"
+          class="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px]"
           aria-label="Gọi hotline"
           @mouseenter="showTooltip = 'hotline'"
           @mouseleave="showTooltip = null"
         >
           <!-- Phone Icon -->
-          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
             <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
           </svg>
         </a>
         
-        <!-- Hotline Tooltip -->
+        <!-- Hotline Tooltip - Hidden on mobile -->
         <div 
           v-if="showTooltip === 'hotline'"
-          class="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap"
+          class="hidden md:block absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap"
         >
           Gọi hotline: 096 315 2236
           <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
@@ -33,7 +33,7 @@
           href="https://zalo.me/0963152236"
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center"
+          class="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px]"
           aria-label="Chat Zalo"
           @mouseenter="showTooltip = 'zalo'"
           @mouseleave="showTooltip = null"
@@ -42,14 +42,14 @@
           <img 
             src="/images/logo/zalo.png" 
             alt="Zalo" 
-            class="w-7 h-7 object-contain"
+            class="w-5 h-5 sm:w-7 sm:h-7 object-contain"
           />
         </a>
         
-        <!-- Zalo Tooltip -->
+        <!-- Zalo Tooltip - Hidden on mobile -->
         <div 
           v-if="showTooltip === 'zalo'"
-          class="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap"
+          class="hidden md:block absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap"
         >
           Chat qua Zalo
           <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
@@ -61,21 +61,21 @@
         <button
           v-if="!isChatOpen"
           @click="toggleChat"
-          class="bg-primary-green hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+          class="bg-primary-green hover:bg-green-600 active:bg-green-700 text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px]"
           aria-label="Mở chat hỗ trợ"
           @mouseenter="showTooltip = 'chat'"
           @mouseleave="showTooltip = null"
         >
           <!-- Headset/Support Icon -->
-          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/>
           </svg>
         </button>
         
-        <!-- Chat Tooltip -->
+        <!-- Chat Tooltip - Hidden on mobile -->
         <div 
           v-if="showTooltip === 'chat' && !isChatOpen"
-          class="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap"
+          class="hidden md:block absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap"
         >
           Chat với tư vấn viên
           <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-800 border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
@@ -86,24 +86,24 @@
     <!-- Chat Window -->
     <div
       v-if="isChatOpen"
-      class="absolute bottom-0 right-0 bg-white rounded-lg shadow-2xl w-96 h-[500px] flex flex-col border border-gray-200 mt-3"
+      class="absolute bottom-0 right-0 bg-white rounded-lg shadow-2xl w-80 sm:w-96 h-[400px] sm:h-[500px] md:h-[500px] flex flex-col border border-gray-200 mt-2 sm:mt-3 max-w-[calc(100vw-1rem)] max-h-[calc(100vh-5rem)]"
     >
       <!-- Chat Header -->
-      <div class="bg-primary-green text-white p-4 rounded-t-lg flex items-center justify-between">
-        <div class="flex items-center space-x-3">
-          <div class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+      <div class="bg-primary-green text-white p-3 sm:p-4 rounded-t-lg flex items-center justify-between">
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <div class="w-6 h-6 sm:w-8 sm:h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+            <svg class="w-3 h-3 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path>
             </svg>
           </div>
           <div>
-            <h3 class="font-semibold">D'House Support</h3>
+            <h3 class="font-semibold text-sm sm:text-base">D'House Support</h3>
             <p class="text-xs opacity-90">{{ isTyping ? 'Đang trả lời...' : 'Trực tuyến' }}</p>
           </div>
         </div>
         <button
           @click="toggleChat"
-          class="text-white hover:text-gray-200 transition-colors"
+          class="text-white hover:text-gray-200 active:text-gray-300 transition-colors p-1 min-w-[44px] min-h-[44px] flex items-center justify-center"
           aria-label="Đóng chat"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -113,7 +113,7 @@
       </div>
 
       <!-- Chat Messages -->
-      <div ref="messagesContainer" class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50">
+      <div ref="messagesContainer" class="flex-1 p-3 sm:p-4 overflow-y-auto space-y-2 sm:space-y-3 bg-gray-50">
         <div
           v-for="message in messages"
           :key="message.id"
@@ -124,7 +124,7 @@
         >
           <div
             :class="[
-              'max-w-xs p-3 rounded-lg text-sm',
+              'max-w-[240px] sm:max-w-xs p-2.5 sm:p-3 rounded-lg text-xs sm:text-sm',
               message.isUser
                 ? 'bg-primary-green text-white rounded-br-none'
                 : 'bg-white text-gray-800 border border-gray-200 rounded-bl-none shadow-sm'
@@ -148,13 +148,13 @@
       </div>
 
       <!-- Quick Actions -->
-      <div v-if="showQuickActions" class="px-4 py-2 border-t border-gray-200">
-        <div class="flex flex-wrap gap-2">
+      <div v-if="showQuickActions" class="px-3 sm:px-4 py-2 border-t border-gray-200">
+        <div class="flex flex-wrap gap-1.5 sm:gap-2">
           <button
             v-for="action in quickActions"
             :key="action.id"
             @click="selectQuickAction(action)"
-            class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded-full transition-colors"
+            class="text-xs bg-gray-100 hover:bg-gray-200 active:bg-gray-300 text-gray-700 px-2.5 sm:px-3 py-1 rounded-full transition-colors min-h-[32px]"
           >
             {{ action.text }}
           </button>
@@ -162,20 +162,20 @@
       </div>
 
       <!-- Chat Input -->
-      <div class="p-4 border-t border-gray-200">
+      <div class="p-3 sm:p-4 border-t border-gray-200">
         <div class="flex space-x-2">
           <input
             v-model="currentMessage"
             @keypress.enter="sendMessage"
             type="text"
             placeholder="Nhập tin nhắn..."
-            class="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-transparent"
+            class="flex-1 border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-transparent min-h-[44px]"
             :disabled="isTyping"
           >
           <button
             @click="sendMessage"
             :disabled="!currentMessage.trim() || isTyping"
-            class="bg-primary-green hover:bg-green-600 disabled:bg-gray-300 text-white p-2 rounded-lg transition-colors"
+            class="bg-primary-green hover:bg-green-600 active:bg-green-700 disabled:bg-gray-300 text-white p-2.5 rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Gửi tin nhắn"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -293,5 +293,43 @@ watch(() => messages.value.length, async () => {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  /* Ensure buttons are touch-friendly */
+  .group a,
+  .group button {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  /* Improve chat window positioning on small screens */
+  .absolute.bottom-0.right-0 {
+    position: fixed;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    left: 0.5rem;
+    width: auto !important;
+  }
+  
+  /* Prevent zoom on input focus */
+  input[type="text"] {
+    font-size: 16px;
+  }
+}
+
+/* Prevent text selection on buttons */
+button, a {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Smooth transitions for better UX */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>

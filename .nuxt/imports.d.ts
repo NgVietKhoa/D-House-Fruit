@@ -34,6 +34,7 @@ export { useAuth } from '../composables/useAuth';
 export { useCart } from '../composables/useCart';
 export { useChatBot } from '../composables/useChatBot';
 export { useGiftBaskets } from '../composables/useGiftBaskets';
+export { useOrders } from '../composables/useOrders';
 export { useProducts } from '../composables/useProducts';
 export { useToast } from '../composables/useToast';
 export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';

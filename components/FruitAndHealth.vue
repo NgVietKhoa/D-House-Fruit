@@ -11,7 +11,7 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center">
         <!-- Left Side - Enhanced Fruits List -->
         <div class="space-y-6">
           <div class="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-6 shadow-xl border border-gray-100">
@@ -117,25 +117,25 @@
         <!-- Center - 3D Visual Display -->
         <div class="relative">
           <!-- Central Circle with Selected Fruit -->
-          <div class="relative w-80 h-80 mx-auto">
+          <div class="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 mx-auto">
             <!-- Main circle background -->
             <div class="absolute inset-0 rounded-full bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
-              <div class="w-64 h-64 rounded-full bg-white shadow-lg flex items-center justify-center">
+              <div class="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full bg-white shadow-lg flex items-center justify-center">
                 <div class="text-center">
-                  <div class="w-24 h-24 mx-auto rounded-full overflow-hidden bg-white shadow-lg mb-4">
+                  <div class="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto rounded-full overflow-hidden bg-white shadow-lg mb-2 sm:mb-4">
                     <img :src="selectedFruit.image" :alt="selectedFruit.name" 
                          class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300"
                          @error="handleImageError" />
                   </div>
-                  <h3 class="text-lg font-bold text-gray-800 mb-1">{{ selectedFruit.name }}</h3>
-                  <p class="text-sm font-medium text-gray-600">{{ selectedFruit.origin }}</p>
+                  <h3 class="text-base sm:text-lg font-bold text-gray-800 mb-1">{{ selectedFruit.name }}</h3>
+                  <p class="text-xs sm:text-sm font-medium text-gray-600">{{ selectedFruit.origin }}</p>
                 </div>
               </div>
             </div>
             
             <!-- Rotating measuring tape animation -->
             <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-96 h-96 border-4 border-dashed border-yellow-400 rounded-full animate-spin-slow opacity-30"></div>
+              <div class="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 border-2 sm:border-4 border-dashed border-yellow-400 rounded-full animate-spin-slow opacity-30"></div>
             </div>
             
             <!-- 3D Floating fruits with enhanced positioning -->
@@ -148,11 +148,11 @@
               <!-- 3D Fruit container with depth -->
               <div class="relative group">
                 <!-- Shadow beneath fruit -->
-                <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-4 bg-black/20 rounded-full blur-md opacity-60"></div>
+                <div class="absolute -bottom-1 sm:-bottom-2 left-1/2 transform -translate-x-1/2 w-8 sm:w-10 lg:w-12 h-2 sm:h-3 lg:h-4 bg-black/20 rounded-full blur-sm sm:blur-md opacity-60"></div>
                 
                 <!-- Main fruit sphere with 3D effect -->
-                <div class="relative w-20 h-20 bg-gradient-to-br from-white via-gray-50 to-gray-100 rounded-full shadow-3d-float border-2 border-white/80 transform-gpu group-hover:scale-125 group-hover:-translate-y-2 transition-all duration-500"
-                     :class="selectedFruit.id === fruit.id ? 'ring-4 ring-green-400 scale-110 -translate-y-1' : ''">
+                <div class="relative w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-white via-gray-50 to-gray-100 rounded-full shadow-3d-float border-2 border-white/80 transform-gpu group-hover:scale-125 group-hover:-translate-y-2 transition-all duration-500"
+                     :class="selectedFruit.id === fruit.id ? 'ring-2 sm:ring-4 ring-green-400 scale-110 -translate-y-1' : ''">
                   
                   <!-- Inner glow -->
                   <div class="absolute inset-1 rounded-full bg-gradient-to-br from-white/60 to-transparent"></div>
@@ -169,8 +169,8 @@
                   
                   <!-- Selection indicator with 3D effect -->
                   <div v-if="selectedFruit.id === fruit.id" 
-                       class="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-3d-small animate-bounce-3d transform-gpu">
-                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                       class="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-3d-small animate-bounce-3d transform-gpu">
+                    <svg class="w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                     </svg>
                   </div>
@@ -396,25 +396,45 @@ const selectFruit = (fruit) => {
   selectedFruit.value = fruit
 }
 
-// Enhanced 3D positioning function
+// Enhanced 3D positioning function - responsive
 const getEnhanced3DPosition = (index) => {
   const angle = (index * 60) * (Math.PI / 180) // 60 degrees apart
-  const radius = 160 // Distance from center
-  const centerX = 160 // Half of container width (320px)
-  const centerY = 160 // Half of container height (320px)
+  
+  // Responsive values based on screen size
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640
+  const isTablet = typeof window !== 'undefined' && window.innerWidth < 1024
+  
+  let radius, centerX, centerY, fruitSize
+  
+  if (isMobile) {
+    radius = 100 // Smaller radius for mobile
+    centerX = 128 // Half of container width (256px)
+    centerY = 128 // Half of container height (256px)
+    fruitSize = 24 // Half of fruit size (48px)
+  } else if (isTablet) {
+    radius = 120 // Medium radius for tablet
+    centerX = 144 // Half of container width (288px)
+    centerY = 144 // Half of container height (288px)
+    fruitSize = 32 // Half of fruit size (64px)
+  } else {
+    radius = 160 // Full radius for desktop
+    centerX = 160 // Half of container width (320px)
+    centerY = 160 // Half of container height (320px)
+    fruitSize = 40 // Half of fruit size (80px)
+  }
   
   // Add some randomness for more natural floating
-  const offsetX = Math.sin(index) * 10
-  const offsetY = Math.cos(index) * 15
+  const offsetX = Math.sin(index) * (isMobile ? 5 : 10)
+  const offsetY = Math.cos(index) * (isMobile ? 8 : 15)
   
-  const x = centerX + radius * Math.cos(angle) - 40 + offsetX // -40 for half of fruit size (80px)
-  const y = centerY + radius * Math.sin(angle) - 40 + offsetY
+  const x = centerX + radius * Math.cos(angle) - fruitSize + offsetX
+  const y = centerY + radius * Math.sin(angle) - fruitSize + offsetY
   
   return {
     left: `${x}px`,
     top: `${y}px`,
     animationDelay: `${index * 1}s`,
-    transform: `translateZ(${Math.sin(index) * 30}px)`
+    transform: `translateZ(${Math.sin(index) * (isMobile ? 15 : 30)}px)`
   }
 }
 

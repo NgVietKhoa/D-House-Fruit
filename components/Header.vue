@@ -104,7 +104,10 @@
             </div>
 
             <!-- Mobile Search Button -->
-            <button class="md:hidden p-2 text-gray-700 hover:text-primary-green transition-colors">
+            <button 
+              @click="toggleMobileSearch"
+              class="md:hidden p-2 text-gray-700 hover:text-primary-green transition-colors"
+            >
               <MagnifyingGlassIcon class="w-5 h-5" />
             </button>
 
@@ -192,6 +195,42 @@
               <XMarkIcon v-else class="w-6 h-6" />
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Search Modal -->
+    <div 
+      v-if="mobileSearchOpen" 
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden"
+      @click="closeMobileSearch"
+    >
+      <div class="bg-white p-4 m-4 rounded-lg shadow-lg" @click.stop>
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-semibold text-gray-800">Tìm kiếm sản phẩm</h3>
+          <button 
+            @click="closeMobileSearch"
+            class="p-1 text-gray-500 hover:text-gray-700"
+          >
+            <XMarkIcon class="w-6 h-6" />
+          </button>
+        </div>
+        
+        <div class="relative">
+          <input 
+            ref="mobileSearchInput"
+            type="text" 
+            placeholder="Tìm kiếm sản phẩm..." 
+            class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-transparent text-base"
+            v-model="mobileSearchQuery"
+            @keyup.enter="handleMobileSearch"
+          >
+          <button 
+            @click="handleMobileSearch"
+            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary-green text-white p-2 rounded-md hover:bg-green-600 transition-colors"
+          >
+            <MagnifyingGlassIcon class="w-5 h-5" />
+          </button>
         </div>
       </div>
     </div>
@@ -296,7 +335,10 @@ import { useAuth } from '~/composables/useAuth'
 
 const mobileMenuOpen = ref(false)
 const userMenuOpen = ref(false)
+const mobileSearchOpen = ref(false)
 const searchQuery = ref('')
+const mobileSearchQuery = ref('')
+const mobileSearchInput = ref(null)
 
 // Cart integration
 const { cartItemsCount } = useCart()
@@ -318,10 +360,35 @@ const toggleUserMenu = () => {
   userMenuOpen.value = !userMenuOpen.value
 }
 
+const toggleMobileSearch = () => {
+  mobileSearchOpen.value = !mobileSearchOpen.value
+  if (mobileSearchOpen.value) {
+    // Focus on input after modal opens
+    nextTick(() => {
+      if (mobileSearchInput.value) {
+        mobileSearchInput.value.focus()
+      }
+    })
+  }
+}
+
+const closeMobileSearch = () => {
+  mobileSearchOpen.value = false
+  mobileSearchQuery.value = ''
+}
+
 const handleSearch = () => {
   if (searchQuery.value.trim()) {
     // Navigate to search results page
     navigateTo(`/search?q=${encodeURIComponent(searchQuery.value)}`)
+  }
+}
+
+const handleMobileSearch = () => {
+  if (mobileSearchQuery.value.trim()) {
+    // Navigate to search results page
+    navigateTo(`/search?q=${encodeURIComponent(mobileSearchQuery.value)}`)
+    closeMobileSearch()
   }
 }
 
@@ -334,6 +401,7 @@ const handleLogout = async () => {
 watch(() => useRoute().path, () => {
   mobileMenuOpen.value = false
   userMenuOpen.value = false
+  mobileSearchOpen.value = false
 })
 
 // Close user menu when clicking outside

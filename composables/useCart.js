@@ -142,6 +142,7 @@ export const useCart = () => {
     return cartTotal.value + getShippingCost()
   }
 
+
   return {
     // State
     cartItems: readonly(cartItems),

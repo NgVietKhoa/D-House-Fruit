@@ -1,3 +1,4 @@
+import { ref } from 'vue'
 import { productsData, categoriesData, mockAPI } from '~/data/products.js'
 
 export const useProducts = () => {

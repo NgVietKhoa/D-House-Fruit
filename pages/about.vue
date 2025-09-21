@@ -119,88 +119,137 @@
       </div>
     </section>
 
-    <!-- Story Timeline Section -->
+    <!-- Quality Process Section -->
     <section class="py-20 bg-white">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16">
           <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-6 font-poppins">
-            Hành trình <span class="text-primary-orange">phát triển</span>
+            Quy trình <span class="text-primary-orange">chọn lọc chất lượng</span>
           </h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Từ một cửa hàng nhỏ đến thương hiệu trái cây nhập khẩu uy tín hàng đầu Việt Nam
+            Mỗi trái cây đến tay bạn đều trải qua 4 bước kiểm tra nghiêm ngặt để đảm bảo chất lượng hoàn hảo
           </p>
         </div>
 
-        <div class="relative">
-          <!-- Timeline Line -->
-          <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary-green to-primary-orange hidden lg:block"></div>
-          
-          <div class="space-y-12">
-            <!-- 2019 -->
-            <div class="flex flex-col lg:flex-row items-center">
-              <div class="lg:w-1/2 lg:pr-12 text-center lg:text-right mb-8 lg:mb-0">
-                <div class="bg-gradient-to-br from-primary-green to-green-600 text-white rounded-2xl p-8 shadow-lg">
-                  <h3 class="text-2xl font-bold mb-4">2019 - Khởi đầu</h3>
-                  <p class="text-green-100 leading-relaxed">
-                    Thành lập D'House Fruit với tầm nhìn mang trái cây cao cấp thế giới đến Việt Nam. 
-                    Bắt đầu với 5 loại trái cây nhập khẩu từ Nhật Bản và Mỹ.
-                  </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Step 1: Source Selection -->
+          <div class="relative group">
+            <div class="bg-white border-l-4 border-primary-green rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center h-full">
+              <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-primary-green rounded-full flex items-center justify-center shadow-lg">
+                <span class="text-white font-bold text-xl">1</span>
+              </div>
+              <div class="mt-8 mb-6">
+                <div class="w-20 h-20 bg-green-50 border-2 border-primary-green rounded-full flex items-center justify-center mx-auto mb-4">
+                  <MapPinIcon class="w-10 h-10 text-primary-green" />
                 </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Chọn nguồn gốc</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  Tuyển chọn các vườn trái cây uy tín nhất từ 15+ quốc gia, 
+                  đảm bảo điều kiện khí hậu và đất đai lý tưởng.
+                </p>
               </div>
-              <div class="relative z-10 w-16 h-16 bg-primary-green rounded-full flex items-center justify-center shadow-lg">
-                <div class="w-8 h-8 bg-white rounded-full"></div>
-              </div>
-              <div class="lg:w-1/2 lg:pl-12"></div>
-            </div>
-
-            <!-- 2021 -->
-            <div class="flex flex-col lg:flex-row items-center">
-              <div class="lg:w-1/2 lg:pr-12"></div>
-              <div class="relative z-10 w-16 h-16 bg-primary-orange rounded-full flex items-center justify-center shadow-lg">
-                <div class="w-8 h-8 bg-white rounded-full"></div>
-              </div>
-              <div class="lg:w-1/2 lg:pl-12 text-center lg:text-left mt-8 lg:mt-0">
-                <div class="bg-gradient-to-br from-primary-orange to-orange-600 text-white rounded-2xl p-8 shadow-lg">
-                  <h3 class="text-2xl font-bold mb-4">2021 - Mở rộng</h3>
-                  <p class="text-orange-100 leading-relaxed">
-                    Mở rộng mạng lưới nhập khẩu từ 15 quốc gia. Ra mắt dịch vụ giỏ quà tặng cao cấp 
-                    và hệ thống giao hàng tận nơi trong ngày.
-                  </p>
-                </div>
+              <div class="flex items-center justify-center space-x-2 text-gray-500 text-sm">
+                <span>🇺🇸</span>
+                <span>🇯🇵</span>
+                <span>🇦🇺</span>
+                <span>🇳🇿</span>
+                <span>🇰🇷</span>
               </div>
             </div>
+          </div>
 
-            <!-- 2023 -->
-            <div class="flex flex-col lg:flex-row items-center">
-              <div class="lg:w-1/2 lg:pr-12 text-center lg:text-right mb-8 lg:mb-0">
-                <div class="bg-gradient-to-br from-primary-green to-green-600 text-white rounded-2xl p-8 shadow-lg">
-                  <h3 class="text-2xl font-bold mb-4">2023 - Số hóa</h3>
-                  <p class="text-green-100 leading-relaxed">
-                    Phát triển nền tảng thương mại điện tử, ứng dụng mobile và hệ thống AI 
-                    tư vấn sản phẩm cá nhân hóa cho khách hàng.
-                  </p>
+          <!-- Step 2: Quality Check -->
+          <div class="relative group">
+            <div class="bg-white border-l-4 border-primary-orange rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center h-full">
+              <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-primary-orange rounded-full flex items-center justify-center shadow-lg">
+                <span class="text-white font-bold text-xl">2</span>
+              </div>
+              <div class="mt-8 mb-6">
+                <div class="w-20 h-20 bg-orange-50 border-2 border-primary-orange rounded-full flex items-center justify-center mx-auto mb-4">
+                  <ShieldCheckIcon class="w-10 h-10 text-primary-orange" />
                 </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Kiểm tra chất lượng</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  Từng trái cây được kiểm tra kỹ lưỡng về kích thước, 
+                  màu sắc, độ chín và không có khuyết tật.
+                </p>
               </div>
-              <div class="relative z-10 w-16 h-16 bg-primary-green rounded-full flex items-center justify-center shadow-lg">
-                <div class="w-8 h-8 bg-white rounded-full"></div>
+              <div class="flex items-center justify-center space-x-2 text-gray-500 text-sm">
+                <span>✓ Kích thước</span>
+                <span>✓ Màu sắc</span>
+                <span>✓ Độ chín</span>
               </div>
-              <div class="lg:w-1/2 lg:pl-12"></div>
             </div>
+          </div>
 
-            <!-- 2024 -->
-            <div class="flex flex-col lg:flex-row items-center">
-              <div class="lg:w-1/2 lg:pr-12"></div>
-              <div class="relative z-10 w-16 h-16 bg-primary-orange rounded-full flex items-center justify-center shadow-lg">
-                <div class="w-8 h-8 bg-white rounded-full"></div>
+          <!-- Step 3: Packaging -->
+          <div class="relative group">
+            <div class="bg-white border-l-4 border-primary-green rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center h-full">
+              <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-primary-green rounded-full flex items-center justify-center shadow-lg">
+                <span class="text-white font-bold text-xl">3</span>
               </div>
-              <div class="lg:w-1/2 lg:pl-12 text-center lg:text-left mt-8 lg:mt-0">
-                <div class="bg-gradient-to-br from-primary-orange to-orange-600 text-white rounded-2xl p-8 shadow-lg">
-                  <h3 class="text-2xl font-bold mb-4">2024 - Tương lai</h3>
-                  <p class="text-orange-100 leading-relaxed">
-                    Trở thành thương hiệu trái cây nhập khẩu số 1 Việt Nam với 50+ loại sản phẩm 
-                    và phục vụ hơn 10,000 khách hàng trên toàn quốc.
-                  </p>
+              <div class="mt-8 mb-6">
+                <div class="w-20 h-20 bg-green-50 border-2 border-primary-green rounded-full flex items-center justify-center mx-auto mb-4">
+                  <GiftIcon class="w-10 h-10 text-primary-green" />
                 </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Đóng gói bảo quản</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  Sử dụng công nghệ đóng gói hiện đại, 
+                  duy trì nhiệt độ và độ ẩm tối ưu trong suốt quá trình vận chuyển.
+                </p>
+              </div>
+              <div class="flex items-center justify-center space-x-2 text-gray-500 text-sm">
+                <span>Lạnh</span>
+                <span>Ẩm độ</span>
+                <span>An toàn</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Delivery -->
+          <div class="relative group">
+            <div class="bg-white border-l-4 border-primary-orange rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center h-full">
+              <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-primary-orange rounded-full flex items-center justify-center shadow-lg">
+                <span class="text-white font-bold text-xl">4</span>
+              </div>
+              <div class="mt-8 mb-6">
+                <div class="w-20 h-20 bg-orange-50 border-2 border-primary-orange rounded-full flex items-center justify-center mx-auto mb-4">
+                  <TruckIcon class="w-10 h-10 text-primary-orange" />
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Giao hàng tận nơi</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  Giao hàng nhanh chóng trong 2-4 giờ tại TP.HCM, 
+                  đảm bảo trái cây đến tay bạn vẫn tươi ngon như vừa hái.
+                </p>
+              </div>
+              <div class="flex items-center justify-center space-x-2 text-gray-500 text-sm">
+                <span>Nhanh</span>
+                <span>Tươi</span>
+                <span>Hoàn hảo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quality Guarantee -->
+        <div class="mt-16 text-center">
+          <div class="bg-gray-50 border-2 border-dashed border-primary-green rounded-3xl p-8 max-w-4xl mx-auto">
+            <h3 class="text-2xl lg:text-3xl font-bold mb-4 text-gray-800">Cam kết chất lượng 100%</h3>
+            <p class="text-lg mb-6 text-gray-600">
+              Nếu bạn không hoàn toàn hài lòng với sản phẩm, chúng tôi sẽ hoàn tiền 100% hoặc đổi sản phẩm mới miễn phí
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <div class="flex items-center space-x-2 text-primary-green">
+                <ShieldCheckIcon class="w-6 h-6" />
+                <span class="font-semibold">Bảo hành chất lượng</span>
+              </div>
+              <div class="flex items-center space-x-2 text-primary-orange">
+                <HeartIcon class="w-6 h-6" />
+                <span class="font-semibold">Hài lòng 100%</span>
+              </div>
+              <div class="flex items-center space-x-2 text-primary-green">
+                <StarIcon class="w-6 h-6" />
+                <span class="font-semibold">Dịch vụ 5 sao</span>
               </div>
             </div>
           </div>

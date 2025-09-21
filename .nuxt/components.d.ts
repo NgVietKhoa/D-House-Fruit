@@ -29,6 +29,7 @@ export const GiftBaskets: typeof import("../components/GiftBaskets.vue")['defaul
 export const Header: typeof import("../components/Header.vue")['default']
 export const HeroBanner: typeof import("../components/HeroBanner.vue")['default']
 export const ProductCard: typeof import("../components/ProductCard.vue")['default']
+export const ProfileSidebar: typeof import("../components/ProfileSidebar.vue")['default']
 export const SuperOffer: typeof import("../components/SuperOffer.vue")['default']
 export const SupportButtons: typeof import("../components/SupportButtons.vue")['default']
 export const Toast: typeof import("../components/Toast.vue")['default']
@@ -72,6 +73,7 @@ export const LazyGiftBaskets: LazyComponent<typeof import("../components/GiftBas
 export const LazyHeader: LazyComponent<typeof import("../components/Header.vue")['default']>
 export const LazyHeroBanner: LazyComponent<typeof import("../components/HeroBanner.vue")['default']>
 export const LazyProductCard: LazyComponent<typeof import("../components/ProductCard.vue")['default']>
+export const LazyProfileSidebar: LazyComponent<typeof import("../components/ProfileSidebar.vue")['default']>
 export const LazySuperOffer: LazyComponent<typeof import("../components/SuperOffer.vue")['default']>
 export const LazySupportButtons: LazyComponent<typeof import("../components/SupportButtons.vue")['default']>
 export const LazyToast: LazyComponent<typeof import("../components/Toast.vue")['default']>
