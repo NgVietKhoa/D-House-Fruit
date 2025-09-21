@@ -64,7 +64,7 @@
             <TruckIcon class="w-8 h-8 text-primary-green" />
             <div>
               <h4 class="font-semibold text-gray-800">Giao hàng nhanh</h4>
-              <p class="text-sm text-gray-600">Trong ngày tại TP.HCM</p>
+              <p class="text-sm text-gray-600">Trong ngày tại Hà Nội</p>
             </div>
           </div>
 
@@ -80,7 +80,7 @@
             <PhoneIcon class="w-8 h-8 text-primary-green" />
             <div>
               <h4 class="font-semibold text-gray-800">Hỗ trợ 24/7</h4>
-              <p class="text-sm text-gray-600">Hotline: 1900 1234</p>
+              <p class="text-sm text-gray-600">Hotline: 0963 152 236</p>
             </div>
           </div>
 
