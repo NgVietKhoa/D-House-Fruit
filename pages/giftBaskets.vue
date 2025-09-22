@@ -65,7 +65,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <!-- Sidebar Filters -->
           <div class="lg:col-span-1">
-            <FilterSidebar type="gift-baskets" @filter-change="handleFilterChange" />
+            <FilterSidebar type="giftBaskets" @filter-change="handleFilterChange" />
           </div>
 
           <!-- Gift Baskets Area -->
@@ -174,7 +174,7 @@
 
                 <!-- Actions -->
                 <div class="flex flex-col space-y-2">
-                  <NuxtLink :to="`/gift-baskets/${basket.id}`" class="btn-secondary text-center text-sm py-2 px-4">
+                  <NuxtLink :to="`/giftBaskets/${basket.id}`" class="btn-secondary text-center text-sm py-2 px-4">
                     Xem chi tiết
                   </NuxtLink>
                   <button class="bg-gray-100 text-gray-700 hover:bg-gray-200 py-2 px-4 rounded-lg text-sm transition-colors">

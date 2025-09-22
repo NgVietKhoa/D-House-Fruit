@@ -79,7 +79,7 @@ const categories = [
   {
     id: 3,
     name: 'Giỏ quà tặng',
-    link: '/gift-baskets',
+    link: '/giftBaskets',
     subcategories: [
       { id: 31, name: 'Giỏ quà Premium' },
       { id: 32, name: 'Giỏ quà Standard' },

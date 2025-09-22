@@ -124,14 +124,14 @@ import { ArrowRightIcon, StarIcon } from '@heroicons/vue/24/outline'
 const props = defineProps({
   type: {
     type: String,
-    default: 'products' // 'products' or 'gift-baskets'
+    default: 'products' // 'products' or 'giftBaskets'
   }
 })
 
 const emit = defineEmits(['filter-change'])
 
 // Use appropriate composable based on type
-const { formatPrice } = props.type === 'gift-baskets' ? useGiftBaskets() : useProducts()
+const { formatPrice } = props.type === 'giftBaskets' ? useGiftBaskets() : useProducts()
 
 // Filter state
 const selectedCategories = ref([])
@@ -142,7 +142,7 @@ const selectedPriceRange = ref({
 
 // Categories based on type
 const categories = computed(() => {
-  if (props.type === 'gift-baskets') {
+  if (props.type === 'giftBaskets') {
     return [
       { id: 'premium', name: 'Giỏ quà Premium', count: 5 },
       { id: 'standard', name: 'Giỏ quà Standard', count: 8 },
@@ -170,7 +170,7 @@ const categories = computed(() => {
 
 // Price range
 const priceRange = computed(() => {
-  if (props.type === 'gift-baskets') {
+  if (props.type === 'giftBaskets') {
     return { min: 500000, max: 5000000 }
   } else {
     return { min: 50000, max: 2000000 }
@@ -179,7 +179,7 @@ const priceRange = computed(() => {
 
 // Trending items based on type
 const trendingItems = computed(() => {
-  if (props.type === 'gift-baskets') {
+  if (props.type === 'giftBaskets') {
     return [
       {
         id: 1,

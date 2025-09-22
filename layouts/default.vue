@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen bg-cream">
+  <div class="min-h-screen bg-cream overflow-x-hidden max-w-full">
     <Header />
-    <main>
+    <main class="w-full overflow-x-hidden">
       <slot />
     </main>
     <Footer />

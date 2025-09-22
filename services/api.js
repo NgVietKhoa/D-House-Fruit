@@ -267,7 +267,7 @@ export const giftBasketsAPIService = {
   async getAll(params = {}) {
     try {
       // Real API call would be:
-      // const response = await apiClient.get('/gift-baskets', { params })
+      // const response = await apiClient.get('/giftBaskets', { params })
       // return response.data
       
       // Mock implementation
@@ -282,7 +282,7 @@ export const giftBasketsAPIService = {
   async getById(id) {
     try {
       // Real API call would be:
-      // const response = await apiClient.get(`/gift-baskets/${id}`)
+      // const response = await apiClient.get(`/giftBaskets/${id}`)
       // return response.data
       
       return await giftBasketsAPI.getGiftBasketById(id)
@@ -296,7 +296,7 @@ export const giftBasketsAPIService = {
   async getByCategory(category, limit = null) {
     try {
       // Real API call would be:
-      // const response = await apiClient.get(`/gift-baskets/category/${category}`, { 
+      // const response = await apiClient.get(`/giftBaskets/category/${category}`, { 
       //   params: { limit } 
       // })
       // return response.data
@@ -312,7 +312,7 @@ export const giftBasketsAPIService = {
   async getFeatured(limit = 4) {
     try {
       // Real API call would be:
-      // const response = await apiClient.get('/gift-baskets/featured', { 
+      // const response = await apiClient.get('/giftBaskets/featured', { 
       //   params: { limit } 
       // })
       // return response.data
@@ -328,7 +328,7 @@ export const giftBasketsAPIService = {
   async search(query, filters = {}) {
     try {
       // Real API call would be:
-      // const response = await apiClient.get('/gift-baskets/search', { 
+      // const response = await apiClient.get('/giftBaskets/search', { 
       //   params: { q: query, ...filters } 
       // })
       // return response.data

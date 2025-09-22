@@ -6,13 +6,13 @@
       <div class="relative group">
         <a
           href="tel:+84963152236"
-          class="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px]"
+          class="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px] w-[44px] h-[44px] sm:w-[48px] sm:h-[48px]"
           aria-label="Gọi hotline"
           @mouseenter="showTooltip = 'hotline'"
           @mouseleave="showTooltip = null"
         >
           <!-- Phone Icon -->
-          <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
             <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
           </svg>
         </a>
@@ -33,7 +33,7 @@
           href="https://zalo.me/0963152236"
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px]"
+          class="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px] w-[44px] h-[44px] sm:w-[48px] sm:h-[48px]"
           aria-label="Chat Zalo"
           @mouseenter="showTooltip = 'zalo'"
           @mouseleave="showTooltip = null"
@@ -42,7 +42,7 @@
           <img 
             src="/images/logo/zalo.png" 
             alt="Zalo" 
-            class="w-5 h-5 sm:w-7 sm:h-7 object-contain"
+            class="w-5 h-5 sm:w-6 sm:h-6 object-contain flex-shrink-0"
           />
         </a>
         
@@ -61,13 +61,13 @@
         <button
           v-if="!isChatOpen"
           @click="toggleChat"
-          class="bg-primary-green hover:bg-green-600 active:bg-green-700 text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px]"
+          class="bg-primary-green hover:bg-green-600 active:bg-green-700 text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px] w-[44px] h-[44px] sm:w-[48px] sm:h-[48px]"
           aria-label="Mở chat hỗ trợ"
           @mouseenter="showTooltip = 'chat'"
           @mouseleave="showTooltip = null"
         >
           <!-- Headset/Support Icon -->
-          <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/>
           </svg>
         </button>
@@ -103,10 +103,10 @@
         </div>
         <button
           @click="toggleChat"
-          class="text-white hover:text-gray-200 active:text-gray-300 transition-colors p-1 min-w-[44px] min-h-[44px] flex items-center justify-center"
+          class="text-white hover:text-gray-200 active:text-gray-300 transition-colors p-1 min-w-[44px] min-h-[44px] w-[44px] h-[44px] flex items-center justify-center"
           aria-label="Đóng chat"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
@@ -175,10 +175,10 @@
           <button
             @click="sendMessage"
             :disabled="!currentMessage.trim() || isTyping"
-            class="bg-primary-green hover:bg-green-600 active:bg-green-700 disabled:bg-gray-300 text-white p-2.5 rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+            class="bg-primary-green hover:bg-green-600 active:bg-green-700 disabled:bg-gray-300 text-white p-2.5 rounded-lg transition-colors min-w-[44px] min-h-[44px] w-[44px] h-[44px] flex items-center justify-center"
             aria-label="Gửi tin nhắn"
           >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
             </svg>
           </button>
@@ -302,6 +302,33 @@ watch(() => messages.value.length, async () => {
   .group button {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box;
+  }
+  
+  /* Perfect icon centering on mobile */
+  .group a svg,
+  .group a img,
+  .group button svg,
+  button svg,
+  button img {
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+  
+  /* Ensure all buttons have perfect centering */
+  button,
+  a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box;
   }
   
   /* Improve chat window positioning on small screens */
@@ -316,6 +343,22 @@ watch(() => messages.value.length, async () => {
   /* Prevent zoom on input focus */
   input[type="text"] {
     font-size: 16px;
+  }
+  
+  /* Additional centering for perfect alignment */
+  .group a,
+  .group button {
+    padding: 0 !important;
+    width: 44px !important;
+    height: 44px !important;
+  }
+  
+  /* Icon positioning override */
+  .group a svg,
+  .group a img,
+  .group button svg {
+    width: 20px !important;
+    height: 20px !important;
   }
 }
 

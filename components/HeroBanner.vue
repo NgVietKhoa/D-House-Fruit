@@ -1,7 +1,7 @@
 <template>
-  <section class="relative overflow-hidden">
+  <section class="relative overflow-hidden mobile-container">
     <!-- Banner Slider -->
-    <div class="relative h-[500px] lg:h-[580px]">
+    <div class="hero-banner relative h-[280px] sm:h-[380px] md:h-[450px] lg:h-[580px] rounded-[10px] overflow-hidden">
       <!-- Banner Images -->
       <div class="absolute inset-0">
         <div 
@@ -19,35 +19,41 @@
         </div>
       </div>
 
-
       <!-- Navigation Arrows -->
       <button 
         @click="previousSlide"
-        class="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm"
+        @touchstart.passive="true"
+        class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 active:bg-opacity-40 text-white p-2 sm:p-3 rounded-full transition-all duration-200 backdrop-blur-sm touch-target"
+        aria-label="Previous banner"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
       </button>
       
       <button 
         @click="nextSlide"
-        class="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm"
+        @touchstart.passive="true"
+        class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 active:bg-opacity-40 text-white p-2 sm:p-3 rounded-full transition-all duration-200 backdrop-blur-sm touch-target"
+        aria-label="Next banner"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
       </button>
 
       <!-- Dots Indicator -->
-      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2">
+      <div class="dots-container absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex space-x-1.5 sm:space-x-2">
         <button
           v-for="(banner, index) in banners"
           :key="index"
           @click="currentSlide = index"
-          :class="['w-3 h-3 rounded-full transition-all duration-200',
-                   currentSlide === index ? 'bg-white' : 'bg-white bg-opacity-50']"
-        ></button>
+          @touchstart.passive="true"
+          class="w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-200 touch-target flex items-center justify-center"
+          :aria-label="`Go to banner ${index + 1}`"
+        >
+          <span :class="['w-2 h-2 sm:w-3 sm:h-3 rounded-full', currentSlide === index ? 'bg-white' : 'bg-white bg-opacity-50']"></span>
+        </button>
       </div>
     </div>
   </section>

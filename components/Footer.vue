@@ -50,7 +50,7 @@
             <NuxtLink to="/fruits" class="block text-gray-300 hover:text-primary-green transition-colors">
               Hoa quả nhập khẩu
             </NuxtLink>
-            <NuxtLink to="/gift-baskets" class="block text-gray-300 hover:text-primary-green transition-colors">
+            <NuxtLink to="/giftBaskets" class="block text-gray-300 hover:text-primary-green transition-colors">
               Giỏ quà tặng
             </NuxtLink>
             <NuxtLink to="/about" class="block text-gray-300 hover:text-primary-green transition-colors">

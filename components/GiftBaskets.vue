@@ -82,9 +82,9 @@
             </div>
           </div>
 
-          <!-- Floating decoration -->
-          <div class="absolute -top-6 -right-6 w-20 h-20 bg-primary-green rounded-full flex items-center justify-center shadow-lg">
-            <HeartIcon class="w-8 h-8 text-white" />
+          <!-- Floating decoration - Responsive size -->
+          <div class="absolute -top-4 -right-4 md:-top-6 md:-right-6 w-12 h-12 md:w-20 md:h-20 bg-primary-green rounded-full flex items-center justify-center shadow-lg">
+            <HeartIcon class="w-5 h-5 md:w-8 md:h-8 text-white" />
           </div>
         </div>
       </div>

@@ -25,7 +25,7 @@
               <NuxtLink to="/fruits" class="bg-primary-orange hover:bg-orange-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                 Khám phá sản phẩm
               </NuxtLink>
-              <NuxtLink to="/gift-baskets" class="bg-white text-primary-green hover:bg-gray-100 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <NuxtLink to="/giftBaskets" class="bg-white text-primary-green hover:bg-gray-100 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                 Giỏ quà tặng
               </NuxtLink>
             </div>
@@ -392,7 +392,7 @@
             <p class="text-green-100 mb-6">
               Quà tặng ý nghĩa cho người thân
             </p>
-            <NuxtLink to="/gift-baskets" class="bg-white hover:bg-gray-100 text-primary-green px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 inline-block">
+            <NuxtLink to="/giftBaskets" class="bg-white hover:bg-gray-100 text-primary-green px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 inline-block">
               Chọn giỏ quà
             </NuxtLink>
           </div>

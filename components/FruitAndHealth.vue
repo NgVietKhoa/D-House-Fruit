@@ -117,67 +117,77 @@
         <!-- Center - 3D Visual Display -->
         <div class="relative">
           <!-- Central Circle with Selected Fruit -->
-          <div class="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 mx-auto">
+          <div class="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 mx-auto">
             <!-- Main circle background -->
             <div class="absolute inset-0 rounded-full bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
-              <div class="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full bg-white shadow-lg flex items-center justify-center">
+              <div class="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full bg-white shadow-lg flex items-center justify-center">
                 <div class="text-center">
-                  <div class="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto rounded-full overflow-hidden bg-white shadow-lg mb-2 sm:mb-4">
+                  <div class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mx-auto rounded-full overflow-hidden bg-white shadow-lg mb-2 sm:mb-4">
                     <img :src="selectedFruit.image" :alt="selectedFruit.name" 
                          class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300"
                          @error="handleImageError" />
                   </div>
-                  <h3 class="text-base sm:text-lg font-bold text-gray-800 mb-1">{{ selectedFruit.name }}</h3>
+                  <h3 class="text-sm sm:text-base md:text-lg font-bold text-gray-800 mb-1">{{ selectedFruit.name }}</h3>
                   <p class="text-xs sm:text-sm font-medium text-gray-600">{{ selectedFruit.origin }}</p>
                 </div>
               </div>
             </div>
             
-            <!-- Rotating measuring tape animation -->
+            <!-- Rotating measuring tape animation - reduced on mobile -->
             <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 border-2 sm:border-4 border-dashed border-yellow-400 rounded-full animate-spin-slow opacity-30"></div>
+              <div class="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 border-2 sm:border-4 border-dashed border-yellow-400 rounded-full opacity-20 sm:opacity-30"
+                   :class="isMobile ? 'animate-spin-slower' : 'animate-spin-slow'"></div>
             </div>
             
             <!-- 3D Floating fruits with enhanced positioning -->
             <div v-for="(fruit, index) in floatingFruits" :key="fruit.id"
-                 class="absolute animate-float-orbit cursor-pointer transform-gpu"
+                 class="absolute cursor-pointer transform-gpu touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
                  :style="getEnhanced3DPosition(index)"
-                 :class="`animation-delay-${index}`"
-                 @click="selectFruit(fruit)">
+                 :class="[
+                   `animation-delay-${index}`,
+                   isMobile ? 'animate-float-gentle' : 'animate-float-orbit'
+                 ]"
+                 @click="selectFruit(fruit)"
+                 @touchstart.passive="true">
               
               <!-- 3D Fruit container with depth -->
               <div class="relative group">
-                <!-- Shadow beneath fruit -->
-                <div class="absolute -bottom-1 sm:-bottom-2 left-1/2 transform -translate-x-1/2 w-8 sm:w-10 lg:w-12 h-2 sm:h-3 lg:h-4 bg-black/20 rounded-full blur-sm sm:blur-md opacity-60"></div>
+                <!-- Shadow beneath fruit - reduced on mobile -->
+                <div class="absolute -bottom-1 sm:-bottom-2 left-1/2 transform -translate-x-1/2 w-6 sm:w-8 md:w-10 lg:w-12 h-1.5 sm:h-2 md:h-3 lg:h-4 bg-black/15 sm:bg-black/20 rounded-full blur-sm opacity-40 sm:opacity-60"></div>
                 
                 <!-- Main fruit sphere with 3D effect -->
-                <div class="relative w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-white via-gray-50 to-gray-100 rounded-full shadow-3d-float border-2 border-white/80 transform-gpu group-hover:scale-125 group-hover:-translate-y-2 transition-all duration-500"
-                     :class="selectedFruit.id === fruit.id ? 'ring-2 sm:ring-4 ring-green-400 scale-110 -translate-y-1' : ''">
+                <div class="relative w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-white via-gray-50 to-gray-100 rounded-full shadow-3d-float border-2 border-white/80 transform-gpu transition-all duration-300"
+                     :class="[
+                       selectedFruit.id === fruit.id ? 'ring-2 sm:ring-4 ring-green-400 scale-105 sm:scale-110 -translate-y-0.5 sm:-translate-y-1' : '',
+                       isMobile ? 'hover:scale-105 active:scale-95' : 'group-hover:scale-125 group-hover:-translate-y-2'
+                     ]">
                   
                   <!-- Inner glow -->
                   <div class="absolute inset-1 rounded-full bg-gradient-to-br from-white/60 to-transparent"></div>
                   
                   <!-- Fruit image -->
-                  <div class="absolute inset-3 rounded-full overflow-hidden">
+                  <div class="absolute inset-2 sm:inset-3 rounded-full overflow-hidden">
                     <img :src="fruit.image" :alt="fruit.name" 
-                         class="w-full h-full object-cover transform-gpu group-hover:rotate-12 transition-transform duration-500"
+                         class="w-full h-full object-cover transform-gpu transition-transform duration-300"
+                         :class="isMobile ? 'group-hover:rotate-6' : 'group-hover:rotate-12'"
                          @error="handleImageError" />
                   </div>
                   
                   <!-- Shine effect -->
-                  <div class="absolute inset-3 rounded-full bg-gradient-to-tr from-white/50 via-transparent to-transparent pointer-events-none"></div>
+                  <div class="absolute inset-2 sm:inset-3 rounded-full bg-gradient-to-tr from-white/50 via-transparent to-transparent pointer-events-none"></div>
                   
                   <!-- Selection indicator with 3D effect -->
                   <div v-if="selectedFruit.id === fruit.id" 
-                       class="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-3d-small animate-bounce-3d transform-gpu">
-                    <svg class="w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                       class="absolute -top-0.5 -right-0.5 sm:-top-1 sm:-right-1 md:-top-2 md:-right-2 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-3d-small transform-gpu"
+                       :class="isMobile ? 'animate-pulse' : 'animate-bounce-3d'">
+                    <svg class="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                     </svg>
                   </div>
                 </div>
                 
-                <!-- Floating fruit name -->
-                <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs font-medium text-gray-700 text-center whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 px-2 py-1 rounded-full shadow-sm">
+                <!-- Floating fruit name - hidden on mobile to reduce clutter -->
+                <div class="hidden sm:block absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs font-medium text-gray-700 text-center whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 px-2 py-1 rounded-full shadow-sm">
                   {{ fruit.name }}
                 </div>
               </div>
@@ -243,7 +253,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 // Fruits data with detailed information
 const fruits = [
@@ -391,69 +401,74 @@ const selectedFruit = ref(fruits[0])
 // Floating fruits (first 6 fruits for the circle)
 const floatingFruits = computed(() => fruits.slice(0, 6))
 
+// Reactive mobile detection
+const isMobile = ref(false)
+const isTablet = ref(false)
+
 // Function to select a fruit
 const selectFruit = (fruit) => {
   selectedFruit.value = fruit
 }
 
-// Enhanced 3D positioning function - responsive
+// Enhanced 3D positioning function - responsive and stable
 const getEnhanced3DPosition = (index) => {
   const angle = (index * 60) * (Math.PI / 180) // 60 degrees apart
   
-  // Responsive values based on screen size
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640
-  const isTablet = typeof window !== 'undefined' && window.innerWidth < 1024
-  
   let radius, centerX, centerY, fruitSize
   
-  if (isMobile) {
-    radius = 100 // Smaller radius for mobile
+  if (isMobile.value) {
+    radius = 85 // Smaller, more stable radius for mobile
+    centerX = 112 // Half of container width (224px)
+    centerY = 112 // Half of container height (224px)
+    fruitSize = 20 // Half of fruit size (40px)
+  } else if (isTablet.value) {
+    radius = 110 // Medium radius for tablet
     centerX = 128 // Half of container width (256px)
     centerY = 128 // Half of container height (256px)
     fruitSize = 24 // Half of fruit size (48px)
-  } else if (isTablet) {
-    radius = 120 // Medium radius for tablet
+  } else {
+    radius = 140 // Full radius for desktop
     centerX = 144 // Half of container width (288px)
     centerY = 144 // Half of container height (288px)
     fruitSize = 32 // Half of fruit size (64px)
-  } else {
-    radius = 160 // Full radius for desktop
-    centerX = 160 // Half of container width (320px)
-    centerY = 160 // Half of container height (320px)
-    fruitSize = 40 // Half of fruit size (80px)
   }
   
-  // Add some randomness for more natural floating
-  const offsetX = Math.sin(index) * (isMobile ? 5 : 10)
-  const offsetY = Math.cos(index) * (isMobile ? 8 : 15)
+  // Reduced randomness for mobile stability
+  const offsetX = Math.sin(index) * (isMobile.value ? 2 : 8)
+  const offsetY = Math.cos(index) * (isMobile.value ? 3 : 12)
   
   const x = centerX + radius * Math.cos(angle) - fruitSize + offsetX
   const y = centerY + radius * Math.sin(angle) - fruitSize + offsetY
   
   return {
-    left: `${x}px`,
-    top: `${y}px`,
-    animationDelay: `${index * 1}s`,
-    transform: `translateZ(${Math.sin(index) * (isMobile ? 15 : 30)}px)`
+    left: `${Math.round(x)}px`,
+    top: `${Math.round(y)}px`,
+    animationDelay: `${index * (isMobile.value ? 0.5 : 1)}s`,
+    transform: isMobile.value 
+      ? `translateZ(0)` // No 3D transform on mobile for stability
+      : `translateZ(${Math.sin(index) * 20}px)`
   }
 }
 
-// Particle positioning for ambient effects
-const getParticlePosition = (index) => {
-  const angle = (index * 30) * (Math.PI / 180)
-  const radius = 150 + Math.random() * 50
-  const centerX = 192
-  const centerY = 192
-  
-  const x = centerX + radius * Math.cos(angle)
-  const y = centerY + radius * Math.sin(angle)
-  
-  return {
-    left: `${x}px`,
-    top: `${y}px`,
-    animationDelay: `${index * 0.3}s`
+// Check screen size on mount and resize
+const checkScreenSize = () => {
+  if (typeof window !== 'undefined') {
+    isMobile.value = window.innerWidth < 640
+    isTablet.value = window.innerWidth >= 640 && window.innerWidth < 1024
   }
 }
+
+// Initialize screen size detection
+onMounted(() => {
+  checkScreenSize()
+  window.addEventListener('resize', checkScreenSize)
+})
+
+onUnmounted(() => {
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('resize', checkScreenSize)
+  }
+})
 
 // Function to handle image error - replace with placeholder
 const handleImageError = (event) => {
@@ -667,6 +682,25 @@ const handleImageError = (event) => {
   background: conic-gradient(from 0deg, #bbf7d0, #6ee7b7, #34d399, #10b981, #059669, #047857, #bbf7d0);
 }
 
+/* Mobile-optimized gentle animations */
+@keyframes float-gentle {
+  0%, 100% { 
+    transform: translateY(0px) translateZ(0); 
+  }
+  50% { 
+    transform: translateY(-5px) translateZ(0); 
+  }
+}
+
+@keyframes spin-slower {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Animation Classes */
 .animate-rotate-3d {
   animation: rotate-3d 30s linear infinite;
@@ -680,12 +714,20 @@ const handleImageError = (event) => {
   animation: float-orbit 6s ease-in-out infinite;
 }
 
+.animate-float-gentle {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
 .animate-bounce-3d {
   animation: bounce-3d 2s ease-in-out infinite;
 }
 
 .animate-orbit-slow {
   animation: orbit-slow 25s linear infinite;
+}
+
+.animate-spin-slower {
+  animation: spin-slower 40s linear infinite;
 }
 
 .animate-orbit-reverse {
@@ -713,186 +755,51 @@ const handleImageError = (event) => {
   transform: rotateY(15deg);
 }
 
-.hover\:scale-125:hover {
-  transform: scale(1.25);
+/* Touch-friendly interactions */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.hover\:-translate-y-2:hover {
-  transform: translateY(-8px);
-}
-
-.hover\:rotate-12:hover {
-  transform: rotate(12deg);
-}
-
-/* Animation Delays for Floating Fruits */
-.animation-delay-0 { animation-delay: 0s; }
-.animation-delay-1 { animation-delay: 1s; }
-.animation-delay-2 { animation-delay: 2s; }
-.animation-delay-3 { animation-delay: 3s; }
-.animation-delay-4 { animation-delay: 4s; }
-.animation-delay-5 { animation-delay: 5s; }
-
-/* Legacy scrollbar for fallback */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-/* 3D Animations */
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
+/* Mobile-specific optimizations */
+@media (max-width: 640px) {
+  .transform-gpu {
+    transform: translateZ(0);
+    will-change: auto;
   }
-  to {
-    transform: rotate(360deg);
+  
+  /* Reduce motion for better performance */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float-orbit,
+    .animate-float-gentle,
+    .animate-spin-slow,
+    .animate-spin-slower {
+      animation: none;
+    }
+  }
+  
+  /* Ensure minimum touch targets */
+  .min-h-\[44px\] {
+    min-height: 44px;
+  }
+  
+  .min-w-\[44px\] {
+    min-width: 44px;
   }
 }
 
-.animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
 }
 
-/* Bounce animation with different delays */
-@keyframes bounce {
-  0%, 20%, 53%, 80%, 100% {
-    transform: translate3d(0,0,0);
-  }
-  40%, 43% {
-    transform: translate3d(0,-30px,0);
-  }
-  70% {
-    transform: translate3d(0,-15px,0);
-  }
-  90% {
-    transform: translate3d(0,-4px,0);
-  }
+.backface-hidden {
+  backface-visibility: hidden;
 }
 
-.animate-bounce {
-  animation: bounce 2s infinite;
-}
-
-/* Smooth transitions */
-.transition-all {
-  transition: all 0.3s ease;
-}
-
-/* Hover effects */
-.hover\:shadow-md:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-.hover\:shadow-xl:hover {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-/* 3D depth effect for center circle */
-.shadow-lg {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-/* Floating fruit hover effect */
-.floating-fruit:hover {
-  transform: translateY(-10px) scale(1.1);
-  transition: all 0.3s ease;
-}
-
-/* Enhanced list item animations */
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.group {
-  animation: slideInUp 0.6s ease-out forwards;
-}
-
-/* Text truncation for descriptions */
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Gradient text effect */
-.gradient-text {
-  background: linear-gradient(135deg, #10b981, #059669);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Enhanced shadow effects */
-.shadow-glow {
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
-}
-
-/* Pulse animation for selection indicator */
-@keyframes pulse-green {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
-  }
-}
-
-.animate-pulse {
-  animation: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Smooth scale hover effect */
-.hover\:scale-\[1\.02\]:hover {
-  transform: scale(1.02);
-}
-
-/* Ring effects for images */
-.ring-2 {
-  box-shadow: 0 0 0 2px var(--tw-ring-color);
-}
-
-.ring-4 {
-  box-shadow: 0 0 0 4px var(--tw-ring-color);
-}
-
-.ring-white {
-  --tw-ring-color: #ffffff;
-}
-
-.ring-green-200 {
-  --tw-ring-color: #bbf7d0;
-}
-
-.ring-green-400 {
-  --tw-ring-color: rgba(74, 222, 128, 0.5);
-}
-
-/* Enhanced backdrop blur */
-.backdrop-blur-sm {
-  backdrop-filter: blur(4px);
+/* Smooth font rendering */
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>

@@ -1,49 +1,50 @@
 <template>
   <Transition
     enter-active-class="transform ease-out duration-500 transition-all"
-    enter-from-class="translate-y-4 opacity-0 scale-95 sm:translate-y-0 sm:translate-x-4 sm:scale-90"
-    enter-to-class="translate-y-0 opacity-100 scale-100 sm:translate-x-0 sm:scale-100"
-    leave-active-class="transition-all ease-in duration-200"
-    leave-from-class="opacity-100 scale-100"
-    leave-to-class="opacity-0 scale-95 translate-y-2"
+    enter-from-class="translate-y-4 opacity-0 scale-90 sm:translate-y-0 sm:translate-x-6 sm:scale-90 rotate-1"
+    enter-to-class="translate-y-0 opacity-100 scale-100 sm:translate-x-0 sm:scale-100 rotate-0 animate-bounce-gentle"
+    leave-active-class="transition-all ease-in duration-300"
+    leave-from-class="opacity-100 scale-100 rotate-0"
+    leave-to-class="opacity-0 scale-90 translate-y-2 sm:translate-x-4 rotate-1"
   >
     <div
       v-if="visible"
-      class="max-w-sm w-full bg-white rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-10 overflow-hidden backdrop-blur-sm"
+      class="toast-container"
       :class="toastClasses"
-      style="box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05), 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));"
+      @touchstart.passive="true"
     >
-      <div class="p-4">
-        <div class="flex items-start">
+      <div class="toast-content">
+        <div class="toast-layout">
           <!-- Icon -->
-          <div class="flex-shrink-0">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center" :class="iconBgClasses">
+          <div class="toast-icon-wrapper">
+            <div class="toast-icon-bg" :class="iconBgClasses">
               <component 
                 :is="iconComponent" 
-                class="h-5 w-5" 
+                class="toast-icon" 
                 :class="iconClasses"
               />
             </div>
           </div>
           
           <!-- Content -->
-          <div class="ml-3 w-0 flex-1 pt-0.5">
-            <p class="text-sm font-medium text-gray-900">
+          <div class="toast-text">
+            <p class="toast-message">
               {{ toast.message }}
             </p>
-            <div v-if="toast.description" class="mt-1 text-sm text-gray-500">
+            <div v-if="toast.description" class="toast-description">
               {{ toast.description }}
             </div>
           </div>
           
           <!-- Close Button -->
-          <div v-if="toast.closable" class="ml-4 flex-shrink-0 flex">
+          <div v-if="toast.closable" class="toast-close-wrapper">
             <button
               @click="$emit('close')"
-              class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-green transition-colors"
+              @touchstart.passive="true"
+              class="toast-close-btn"
+              aria-label="Đóng thông báo"
             >
-              <span class="sr-only">Đóng</span>
-              <XMarkIcon class="h-5 w-5" />
+              <XMarkIcon class="toast-close-icon" />
             </button>
           </div>
         </div>
@@ -51,10 +52,10 @@
         <!-- Progress Bar -->
         <div 
           v-if="showProgress" 
-          class="mt-3 w-full bg-gray-200 rounded-full h-1.5 overflow-hidden"
+          class="toast-progress-container"
         >
           <div 
-            class="h-full rounded-full transition-all duration-100 ease-linear shadow-sm"
+            class="toast-progress-bar"
             :class="progressBarClasses"
             :style="{ width: `${progress}%` }"
           ></div>
@@ -102,12 +103,12 @@ const iconMap = {
 const iconComponent = computed(() => iconMap[props.toast.type] || InformationCircleIcon)
 
 const toastClasses = computed(() => {
-  const baseClasses = 'border-l-4 relative overflow-hidden'
+  const baseClasses = 'border-l-4 relative overflow-hidden toast-glow'
   const typeClasses = {
-    success: 'border-green-500 bg-gradient-to-r from-green-50 to-emerald-50 shadow-green-500/20 ring-1 ring-green-200/30',
-    error: 'border-red-500 bg-gradient-to-r from-red-50 to-rose-50 shadow-red-500/20 ring-1 ring-red-200/30',
-    warning: 'border-yellow-500 bg-gradient-to-r from-yellow-50 to-amber-50 shadow-yellow-500/20 ring-1 ring-yellow-200/30',
-    info: 'border-blue-500 bg-gradient-to-r from-blue-50 to-sky-50 shadow-blue-500/20 ring-1 ring-blue-200/30'
+    success: 'border-green-500 bg-gradient-to-br from-green-50 via-emerald-50 to-green-100 shadow-green-500/30 ring-2 ring-green-300/40 toast-success-glow',
+    error: 'border-red-500 bg-gradient-to-br from-red-50 via-rose-50 to-red-100 shadow-red-500/30 ring-2 ring-red-300/40 toast-error-glow animate-pulse-gentle',
+    warning: 'border-yellow-500 bg-gradient-to-br from-yellow-50 via-amber-50 to-yellow-100 shadow-yellow-500/30 ring-2 ring-yellow-300/40 toast-warning-glow',
+    info: 'border-blue-500 bg-gradient-to-br from-blue-50 via-sky-50 to-blue-100 shadow-blue-500/30 ring-2 ring-blue-300/40 toast-info-glow'
   }
   return `${baseClasses} ${typeClasses[props.toast.type] || typeClasses.info}`
 })
@@ -124,10 +125,10 @@ const iconClasses = computed(() => {
 
 const iconBgClasses = computed(() => {
   const typeClasses = {
-    success: 'bg-green-100 shadow-xl shadow-green-500/30 ring-2 ring-green-200/50',
-    error: 'bg-red-100 shadow-xl shadow-red-500/30 ring-2 ring-red-200/50',
-    warning: 'bg-yellow-100 shadow-xl shadow-yellow-500/30 ring-2 ring-yellow-200/50',
-    info: 'bg-blue-100 shadow-xl shadow-blue-500/30 ring-2 ring-blue-200/50'
+    success: 'bg-gradient-to-br from-green-100 to-emerald-200 shadow-2xl shadow-green-500/40 ring-3 ring-green-300/60 icon-glow-success',
+    error: 'bg-gradient-to-br from-red-100 to-rose-200 shadow-2xl shadow-red-500/40 ring-3 ring-red-300/60 icon-glow-error animate-pulse-icon',
+    warning: 'bg-gradient-to-br from-yellow-100 to-amber-200 shadow-2xl shadow-yellow-500/40 ring-3 ring-yellow-300/60 icon-glow-warning',
+    info: 'bg-gradient-to-br from-blue-100 to-sky-200 shadow-2xl shadow-blue-500/40 ring-3 ring-blue-300/60 icon-glow-info'
   }
   return typeClasses[props.toast.type] || typeClasses.info
 })
@@ -181,39 +182,433 @@ const handleClose = () => {
 </script>
 
 <style scoped>
-/* Enhanced toast animations and effects */
-.toast-enter-active,
-.toast-leave-active {
-  transition: all 0.3s ease;
+/* Toast Container - Mobile First Design */
+.toast-container {
+  /* Highest z-index priority */
+  z-index: 99999 !important;
+  position: relative;
+  
+  /* Mobile: Compact size, full width with margins */
+  width: calc(100vw - 2rem);
+  max-width: 100%;
+  margin: 0 1rem;
+  
+  /* Base styling */
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 1rem;
+  pointer-events: auto;
+  overflow: hidden;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  
+  /* Enhanced mobile shadows - moderate */
+  box-shadow: 
+    0 8px 15px -3px rgba(0, 0, 0, 0.12),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  
+  /* Touch optimization */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  
+  /* Smooth transitions with spring */
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* Transform GPU acceleration */
+  transform: translateZ(0);
+  will-change: transform, opacity;
 }
 
-.toast-enter-from {
-  opacity: 0;
-  transform: translateX(100%);
+/* Desktop: Larger size, positioned */
+@media (min-width: 640px) {
+  .toast-container {
+    width: 26rem;
+    max-width: 26rem;
+    margin: 0;
+    border-radius: 1.25rem;
+    
+    /* Enhanced desktop shadows - balanced */
+    box-shadow: 
+      0 12px 20px -5px rgba(0, 0, 0, 0.15),
+      0 8px 12px -3px rgba(0, 0, 0, 0.08),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 0 15px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.08)) 
+            drop-shadow(0 3px 6px rgba(0, 0, 0, 0.06));
+  }
+  
+  .toast-container:hover {
+    transform: translateY(-1px) scale(1.01);
+    box-shadow: 
+      0 16px 25px -5px rgba(0, 0, 0, 0.18),
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 6px 8px -2px rgba(0, 0, 0, 0.06),
+      0 0 0 1px rgba(255, 255, 255, 0.15),
+      0 0 20px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
 }
 
-.toast-leave-to {
-  opacity: 0;
-  transform: translateX(100%);
+/* Toast Content */
+.toast-content {
+  /* Mobile: Compact padding */
+  padding: 0.875rem;
 }
 
-/* Subtle breathing animation */
-@keyframes toast-breathe {
+@media (min-width: 640px) {
+  .toast-content {
+    padding: 1rem;
+  }
+}
+
+/* Toast Layout */
+.toast-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+/* Icon Wrapper */
+.toast-icon-wrapper {
+  flex-shrink: 0;
+}
+
+.toast-icon-bg {
+  /* Mobile: Smaller icon background */
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 640px) {
+  .toast-icon-bg {
+    width: 2.5rem;
+    height: 2.5rem;
+    box-shadow: 0 8px 10px -3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.toast-icon {
+  /* Mobile: Smaller icon */
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (min-width: 640px) {
+  .toast-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+/* Text Content */
+.toast-text {
+  flex: 1;
+  min-width: 0;
+  padding-top: 0.125rem;
+}
+
+.toast-message {
+  /* Mobile: Slightly smaller text */
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.25;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .toast-message {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+.toast-description {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.3;
+}
+
+@media (min-width: 640px) {
+  .toast-description {
+    font-size: 0.875rem;
+    margin-top: 0.375rem;
+  }
+}
+
+/* Close Button */
+.toast-close-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  margin-left: 0.5rem;
+}
+
+.toast-close-btn {
+  /* Mobile: Touch-friendly 44px minimum */
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  
+  background: white;
+  border: none;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  cursor: pointer;
+  
+  transition: all 0.15s ease-in-out;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  
+  /* Focus styles */
+  outline: none;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+}
+
+.toast-close-btn:hover {
+  color: #6b7280;
+  background: #f9fafb;
+}
+
+.toast-close-btn:focus {
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.5);
+}
+
+.toast-close-btn:active {
+  transform: scale(0.95);
+  background: #f3f4f6;
+}
+
+@media (min-width: 640px) {
+  .toast-close-btn {
+    min-width: 2rem;
+    min-height: 2rem;
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.toast-close-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .toast-close-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+/* Progress Bar */
+.toast-progress-container {
+  margin-top: 0.75rem;
+  width: 100%;
+  height: 0.25rem;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .toast-progress-container {
+    height: 0.375rem;
+  }
+}
+
+.toast-progress-bar {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.1s ease-linear;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 639px) {
+  .toast-container {
+    /* Ensure no horizontal overflow */
+    max-width: calc(100vw - 2rem) !important;
+    box-sizing: border-box;
+  }
+  
+  /* Disable hover effects on mobile */
+  .toast-container:hover {
+    transform: none;
+  }
+  
+  /* Better touch feedback */
+  .toast-container:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .toast-container,
+  .toast-close-btn,
+  .toast-progress-bar {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  .animate-bounce-gentle,
+  .animate-pulse-gentle,
+  .animate-pulse-icon {
+    animation: none !important;
+  }
+  
+  .toast-container:hover {
+    transform: none !important;
+  }
+}
+
+/* Force highest z-index globally */
+.toast-container {
+  z-index: 99999 !important;
+  position: relative !important;
+}
+
+/* Ensure toast appears above everything */
+.toast-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Toast Glow Effects - Moderate */
+.toast-success-glow {
+  box-shadow: 
+    0 0 0 1px rgba(34, 197, 94, 0.1),
+    0 0 8px rgba(34, 197, 94, 0.12),
+    0 0 16px rgba(34, 197, 94, 0.08),
+    0 8px 15px -3px rgba(0, 0, 0, 0.12);
+}
+
+.toast-error-glow {
+  box-shadow: 
+    0 0 0 1px rgba(239, 68, 68, 0.1),
+    0 0 8px rgba(239, 68, 68, 0.15),
+    0 0 16px rgba(239, 68, 68, 0.1),
+    0 8px 15px -3px rgba(0, 0, 0, 0.12);
+}
+
+.toast-warning-glow {
+  box-shadow: 
+    0 0 0 1px rgba(245, 158, 11, 0.1),
+    0 0 8px rgba(245, 158, 11, 0.12),
+    0 0 16px rgba(245, 158, 11, 0.08),
+    0 8px 15px -3px rgba(0, 0, 0, 0.12);
+}
+
+.toast-info-glow {
+  box-shadow: 
+    0 0 0 1px rgba(59, 130, 246, 0.1),
+    0 0 8px rgba(59, 130, 246, 0.12),
+    0 0 16px rgba(59, 130, 246, 0.08),
+    0 8px 15px -3px rgba(0, 0, 0, 0.12);
+}
+
+/* Icon Glow Effects - Subtle */
+.icon-glow-success {
+  box-shadow: 
+    0 0 0 3px rgba(34, 197, 94, 0.15),
+    0 0 8px rgba(34, 197, 94, 0.2),
+    0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.icon-glow-error {
+  box-shadow: 
+    0 0 0 3px rgba(239, 68, 68, 0.15),
+    0 0 8px rgba(239, 68, 68, 0.25),
+    0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.icon-glow-warning {
+  box-shadow: 
+    0 0 0 3px rgba(245, 158, 11, 0.15),
+    0 0 8px rgba(245, 158, 11, 0.2),
+    0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.icon-glow-info {
+  box-shadow: 
+    0 0 0 3px rgba(59, 130, 246, 0.15),
+    0 0 8px rgba(59, 130, 246, 0.2),
+    0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom Animations */
+@keyframes bounce-gentle {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+@keyframes pulse-gentle {
   0%, 100% {
+    opacity: 1;
     transform: scale(1);
   }
   50% {
+    opacity: 0.95;
     transform: scale(1.02);
   }
 }
 
-/* Apply breathing animation on hover */
-.max-w-sm:hover {
-  animation: toast-breathe 2s ease-in-out infinite;
+@keyframes pulse-icon {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 
+      0 0 0 3px rgba(239, 68, 68, 0.15),
+      0 0 8px rgba(239, 68, 68, 0.25);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 
+      0 0 0 4px rgba(239, 68, 68, 0.2),
+      0 0 12px rgba(239, 68, 68, 0.3);
+  }
 }
 
-/* Enhanced shadow on hover */
-.max-w-sm:hover {
-  filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.1)) drop-shadow(0 8px 8px rgba(0, 0, 0, 0.15));
+.animate-bounce-gentle {
+  animation: bounce-gentle 1s ease-in-out;
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 2s ease-in-out infinite;
+}
+
+.animate-pulse-icon {
+  animation: pulse-icon 1.5s ease-in-out infinite;
 }
 </style>

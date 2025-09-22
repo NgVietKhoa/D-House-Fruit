@@ -176,11 +176,11 @@
             </div>
 
             <!-- Cart -->
-            <NuxtLink to="/cart" class="relative p-2 text-gray-700 hover:text-primary-green transition-colors">
+            <NuxtLink to="/cart" class="relative p-2 pr-6 pt-3 text-gray-700 hover:text-primary-green transition-colors">
               <ShoppingCartIcon class="w-5 h-5 md:w-6 md:h-6" />
               <span 
                 v-if="cartItemsCount > 0"
-                class="absolute -top-1 -right-1 bg-primary-orange text-white text-xs rounded-full w-4 h-4 md:w-5 md:h-5 flex items-center justify-center text-xs font-semibold"
+                class="absolute top-0 right-1 bg-primary-orange text-white text-xs rounded-full min-w-[1.75rem] h-4 md:min-w-[2rem] md:h-5 flex items-center justify-center text-xs font-semibold px-1"
               >
                 {{ cartItemsCount > 99 ? '99+' : cartItemsCount }}
               </span>
@@ -236,81 +236,169 @@
     </div>
 
     <!-- Navigation Bar -->
-    <div class="bg-gradient-to-r from-primary-green via-green-500 to-green-600 text-white">
+    <div class="bg-gray-50 border-t border-gray-200 shadow-lg">
       <div class="container mx-auto px-4">
-        <div class="py-3">
+        <div class="py-2">
           <!-- Desktop Navigation -->
-          <nav class="hidden md:flex items-center space-x-8">
-            <NuxtLink to="/" class="text-white hover:text-green-200 font-medium transition-colors">
+          <nav class="hidden md:flex items-center justify-center space-x-12">
+            <NuxtLink 
+              to="/" 
+              class="px-4 py-2 text-gray-700 font-semibold text-sm uppercase tracking-wide hover:text-primary-green transition-colors duration-200"
+            >
               Trang chủ
             </NuxtLink>
-            <NuxtLink to="/fruits" class="text-white hover:text-green-200 font-medium transition-colors">
+            <NuxtLink 
+              to="/fruits" 
+              class="px-4 py-2 text-gray-700 font-semibold text-sm uppercase tracking-wide hover:text-primary-green transition-colors duration-200"
+            >
               Hoa quả
             </NuxtLink>
-            <NuxtLink to="/giftBaskets" class="text-white hover:text-green-200 font-medium transition-colors">
+            <NuxtLink 
+              to="/giftBaskets" 
+              class="px-4 py-2 text-gray-700 font-semibold text-sm uppercase tracking-wide hover:text-primary-green transition-colors duration-200"
+            >
               Giỏ quà tặng
             </NuxtLink>
-            <NuxtLink to="/about" class="text-white hover:text-green-200 font-medium transition-colors">
+            <NuxtLink 
+              to="/about" 
+              class="px-4 py-2 text-gray-700 font-semibold text-sm uppercase tracking-wide hover:text-primary-green transition-colors duration-200"
+            >
               Giới thiệu
             </NuxtLink>
-            <NuxtLink to="/contact" class="text-white hover:text-green-200 font-medium transition-colors">
+            <NuxtLink 
+              to="/contact" 
+              class="px-4 py-2 text-gray-700 font-semibold text-sm uppercase tracking-wide hover:text-primary-green transition-colors duration-200"
+            >
               Liên hệ
             </NuxtLink>
           </nav>
         </div>
+      </div>
+    </div>
 
-        <!-- Mobile Navigation -->
-        <nav v-if="mobileMenuOpen" class="md:hidden mt-4 pb-4 border-t border-green-400">
-          <div class="flex flex-col space-y-4 pt-4">
-            <NuxtLink to="/" class="text-white hover:text-green-200 font-medium transition-colors">
-              Trang chủ
-            </NuxtLink>
-            <NuxtLink to="/fruits" class="text-white hover:text-green-200 font-medium transition-colors">
-              Hoa quả
-            </NuxtLink>
-            <NuxtLink to="/gift-baskets" class="text-white hover:text-green-200 font-medium transition-colors">
-              Giỏ quà tặng
-            </NuxtLink>
-            <NuxtLink to="/about" class="text-white hover:text-green-200 font-medium transition-colors">
-              Giới thiệu
-            </NuxtLink>
-            <NuxtLink to="/contact" class="text-white hover:text-green-200 font-medium transition-colors">
-              Liên hệ
-            </NuxtLink>
+    <!-- Mobile Navigation Fullscreen -->
+    <div 
+      v-if="mobileMenuOpen" 
+      class="fixed inset-0 bg-white z-50 md:hidden"
+    >
+      <!-- Mobile Menu Header -->
+      <div class="flex items-center justify-between p-4 border-b border-gray-200">
+        <div class="flex items-center space-x-2">
+          <img src="/images/logoDHouseFruit.png" alt="D'House Fruit Logo" class="w-8 h-8 object-contain">
+          <h2 class="text-lg font-bold text-gray-800">D'House Fruit</h2>
+        </div>
+        <button 
+          @click="mobileMenuOpen = false"
+          class="p-2 text-gray-600 hover:text-gray-800 transition-colors"
+        >
+          <XMarkIcon class="w-6 h-6" />
+        </button>
+      </div>
+
+      <!-- Mobile Menu Content -->
+      <div class="flex-1 overflow-y-auto">
+        <nav class="p-6">
+          <div class="space-y-6">
+            <!-- Main Navigation -->
+            <div class="space-y-4">
+              <NuxtLink 
+                to="/" 
+                class="block text-2xl font-semibold text-gray-800 hover:text-primary-green transition-colors duration-200 py-2"
+                @click="mobileMenuOpen = false"
+              >
+                Trang chủ
+              </NuxtLink>
+              <NuxtLink 
+                to="/fruits" 
+                class="block text-2xl font-semibold text-gray-800 hover:text-primary-green transition-colors duration-200 py-2"
+                @click="mobileMenuOpen = false"
+              >
+                Hoa quả
+              </NuxtLink>
+              <NuxtLink 
+                to="/giftBaskets" 
+                class="block text-2xl font-semibold text-gray-800 hover:text-primary-green transition-colors duration-200 py-2"
+                @click="mobileMenuOpen = false"
+              >
+                Giỏ quà tặng
+              </NuxtLink>
+              <NuxtLink 
+                to="/about" 
+                class="block text-2xl font-semibold text-gray-800 hover:text-primary-green transition-colors duration-200 py-2"
+                @click="mobileMenuOpen = false"
+              >
+                Giới thiệu
+              </NuxtLink>
+              <NuxtLink 
+                to="/contact" 
+                class="block text-2xl font-semibold text-gray-800 hover:text-primary-green transition-colors duration-200 py-2"
+                @click="mobileMenuOpen = false"
+              >
+                Liên hệ
+              </NuxtLink>
+            </div>
             
-            <!-- Mobile Auth Section -->
-            <div class="border-t border-green-400 pt-4 mt-4">
-              <div v-if="isAuthenticated" class="space-y-3">
-                <div class="flex items-center space-x-3 text-white">
-                  <div class="w-8 h-8 bg-white bg-opacity-20 text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                    {{ getInitials(userDisplayName) }}
-                  </div>
-                  <span class="font-medium">{{ userDisplayName }}</span>
+            <!-- Divider -->
+            <div class="border-t border-gray-200"></div>
+            
+            <!-- Auth Section -->
+            <div v-if="isAuthenticated" class="space-y-4">
+              <div class="flex items-center space-x-3 py-2">
+                <div class="w-12 h-12 bg-primary-green text-white rounded-full flex items-center justify-center text-lg font-semibold">
+                  {{ getInitials(userDisplayName) }}
                 </div>
-                <NuxtLink to="/profile" class="block text-white hover:text-green-200 font-medium transition-colors">
-                  Thông tin cá nhân
-                </NuxtLink>
-                <NuxtLink to="/orders" class="block text-white hover:text-green-200 font-medium transition-colors">
-                  Đơn hàng của tôi
-                </NuxtLink>
-                <button 
-                  @click="handleLogout"
-                  class="block w-full text-left text-red-200 hover:text-red-100 font-medium transition-colors"
-                >
-                  Đăng xuất
-                </button>
+                <div>
+                  <p class="font-semibold text-gray-800">{{ userDisplayName }}</p>
+                  <p class="text-sm text-gray-600">{{ user.email }}</p>
+                </div>
               </div>
-              <div v-else class="space-y-3">
-                <NuxtLink to="/login" class="block text-white hover:text-green-200 font-medium transition-colors">
-                  Đăng nhập
-                </NuxtLink>
-                <NuxtLink to="/register" class="block bg-white text-primary-green px-4 py-2 rounded-lg font-medium hover:bg-green-50 transition-colors text-center">
-                  Đăng ký
-                </NuxtLink>
-              </div>
+              <NuxtLink 
+                to="/profile" 
+                class="block text-xl font-medium text-gray-700 hover:text-primary-green transition-colors duration-200 py-2"
+                @click="mobileMenuOpen = false"
+              >
+                Thông tin cá nhân
+              </NuxtLink>
+              <NuxtLink 
+                to="/orders" 
+                class="block text-xl font-medium text-gray-700 hover:text-primary-green transition-colors duration-200 py-2"
+                @click="mobileMenuOpen = false"
+              >
+                Đơn hàng của tôi
+              </NuxtLink>
+              <button 
+                @click="handleLogout"
+                class="block w-full text-left text-xl font-medium text-red-600 hover:text-red-700 transition-colors duration-200 py-2"
+              >
+                Đăng xuất
+              </button>
+            </div>
+            <div v-else class="space-y-4">
+              <NuxtLink 
+                to="/login" 
+                class="block text-xl font-medium text-gray-700 hover:text-primary-green transition-colors duration-200 py-2"
+                @click="mobileMenuOpen = false"
+              >
+                Đăng nhập
+              </NuxtLink>
+              <NuxtLink 
+                to="/register" 
+                class="block w-full text-center bg-primary-green text-white font-semibold text-lg py-4 rounded-lg hover:bg-green-600 transition-colors duration-200"
+                @click="mobileMenuOpen = false"
+              >
+                Đăng ký ngay
+              </NuxtLink>
             </div>
           </div>
         </nav>
+      </div>
+
+      <!-- Mobile Menu Footer -->
+      <div class="border-t border-gray-200 p-6">
+        <div class="text-center text-sm text-gray-600">
+          <p>© 2025 D'House Fruit</p>
+          <p>Premium Imported Fruits</p>
+        </div>
       </div>
     </div>
   </header>

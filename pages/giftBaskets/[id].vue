@@ -5,7 +5,7 @@
       <div class="text-center">
         <h1 class="text-4xl font-bold text-gray-800 mb-4">Lỗi tham số</h1>
         <p class="text-gray-600 mb-8">Không tìm thấy ID giỏ quà tặng.</p>
-        <NuxtLink to="/gift-baskets" class="btn-primary">
+        <NuxtLink to="/giftBaskets" class="btn-primary">
           Quay lại danh sách giỏ quà
         </NuxtLink>
       </div>
@@ -16,7 +16,7 @@
       <div class="text-center">
         <h1 class="text-4xl font-bold text-gray-800 mb-4">Không tìm thấy giỏ quà</h1>
         <p class="text-gray-600 mb-8">Giỏ quà tặng bạn tìm kiếm không tồn tại hoặc đã bị xóa.</p>
-        <NuxtLink to="/gift-baskets" class="btn-primary">
+        <NuxtLink to="/giftBaskets" class="btn-primary">
           Quay lại danh sách giỏ quà
         </NuxtLink>
       </div>
@@ -38,7 +38,7 @@
           <Breadcrumb 
             :items="[
               { text: 'Trang chủ', href: '/' },
-              { text: 'Giỏ quà tặng', href: '/gift-baskets' },
+              { text: 'Giỏ quà tặng', href: '/giftBaskets' },
               { text: giftBasket.name }
             ]"
             theme="light"

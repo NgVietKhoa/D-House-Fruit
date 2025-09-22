@@ -1,7 +1,7 @@
 <template>
   <div class="card overflow-hidden group">
     <!-- Gift Basket Image -->
-    <NuxtLink :to="`/gift-baskets/${giftBasket.id}`" class="block relative overflow-hidden">
+    <NuxtLink :to="`/giftBaskets/${giftBasket.id}`" class="block relative overflow-hidden">
       <div class="aspect-square bg-gradient-to-br from-cream to-light-cream flex items-center justify-center overflow-hidden">
         <!-- Gift basket image -->
         <img 
